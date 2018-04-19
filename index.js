@@ -113,13 +113,11 @@ function tradeDecision (trade, price, upperBand, lowerBand) {
     let lastTrade = tradesArr.slice(-1)[0]
     let last = lastTradeArray.slice(-1)[0]
     if (price > upperBand && lastTrade === 'long' && prices.length > 19) {
-        console.log('SELLLLL')
         updateArraysShort(price)
         profitArray.push(calculatePnL(last, trade))
         storeShort(last, trade)
     }
     if (price < lowerBand && lastTrade === 'sell' && prices.length > 19) {
-        console.log('BUYYYYYY')
         updateArraysLong(price)
         profitArray.push(calculatePnL(last, trade))
         storeLong(last, trade)
@@ -141,7 +139,6 @@ function standardDeviation (trade) {
     let lastBar = prices[prices.length - 2]
     let upperBand = calculateUpper(lastBar, devActual)
     let lowerBand = calculateLower(lastBar, devActual)
-    console.log(upperBand, lowerBand, trade.price)
     tradeDecision(trade, trade.price, upperBand, lowerBand)
 }
 
