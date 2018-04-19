@@ -8,6 +8,8 @@ const pg = require('./knexfile')
 const crypto = require('crypto')
 const quoteUrl = 'https://testnet.bitmex.com/api/v1/trade?symbol=XBTUSD&count=1&reverse=true'
 const router = express.Router()
+const cors = require('cors')
+
 
 
 function getQuote () {
@@ -146,6 +148,7 @@ function standardDeviation (trade) {
 
 const quoteLoop = setInterval (getQuote, 5000)
 
+app.use(cors())
 
 app.get("/", (request, response, next) => {
     queries.list()
