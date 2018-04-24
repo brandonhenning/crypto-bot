@@ -6,8 +6,7 @@ const app = express()
 const queries = require('./queries/queries')
 const pg = require('./knexfile')
 const crypto = require('crypto')
-const testnetUrl = 'https://testnet.bitmex.com/api/v1/trade?symbol=XBTUSD&count=1&reverse=true'
-const bitMexUrl = 'https://www.bitmex.com/api/v1/trade?symbol=XBTUSD&count=1&reverse=true'
+
 const router = express.Router()
 const cors = require('cors')
 
@@ -103,13 +102,6 @@ function updateArraysLong (price) {
     })
 }
 
-function calculateUpper (lastBar, devActual) {
-    return lastBar + (devActual * 2.0)
-}
-
-function calculateLower (lastBar, devActual) {
-    return lastBar - (devActual * 2.0)
-}
 
 
 function tradeDecision (trade, price, upperBand, lowerBand) {
