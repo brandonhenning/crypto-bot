@@ -6,14 +6,15 @@ const app = express()
 const queries = require('./queries/queries')
 const pg = require('./knexfile')
 const crypto = require('crypto')
-const quoteUrl = 'https://testnet.bitmex.com/api/v1/trade?symbol=XBTUSD&count=1&reverse=true'
+const testnetUrl = 'https://testnet.bitmex.com/api/v1/trade?symbol=XBTUSD&count=1&reverse=true'
+const bitMexUrl = 'https://www.bitmex.com/api/v1/trade?symbol=XBTUSD&count=1&reverse=true'
 const router = express.Router()
 const cors = require('cors')
 
 
 
 function getQuote () {
-    fetch(quoteUrl)
+    fetch(bitMexUrl)
     .then(res => res.json())
     .then(quote => {
         let trade = {
